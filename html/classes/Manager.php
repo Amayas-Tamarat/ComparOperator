@@ -40,5 +40,6 @@ class Manager{
         }
         return $listeDestinations;
     }
+
  
 }

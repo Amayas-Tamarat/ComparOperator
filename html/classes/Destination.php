@@ -9,6 +9,20 @@ class Destination {
     {
         $this->hydrate($datas);
     }
+
+    public function hydrate($datas)
+    {
+        if (isset($datas["id"])) {
+            $this->setId($datas["id"]);
+        }
+        if (isset($datas["location"])) {
+            $this->setLocation($datas["location"]);
+        }
+        if (isset($datas["price"])) {
+            $this->setPrice($datas["price"]);
+        }
+        
+    }
     /**
      * Get the value of id
      */ 
@@ -69,17 +83,5 @@ class Destination {
         return $this;
     }
 
-    public function hydrate($datas)
-    {
-        if (isset($datas["id"])) {
-            $this->setId($datas["id"]);
-        }
-        if (isset($datas["location"])) {
-            $this->setLocation($datas["location"]);
-        }
-        if (isset($datas["price"])) {
-            $this->setPrice($datas["price"]);
-        }
-        
-    }
+
 }

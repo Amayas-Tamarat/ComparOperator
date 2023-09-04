@@ -5,6 +5,24 @@ class Score{
     private int $value;
     private string $author;
 
+    public function __construct(array $datas)
+    {
+        $this->hydrate($datas);
+    }
+
+    public function hydrate($datas)
+    {
+        if (isset($datas["id"])) {
+            $this->setId($datas["id"]);
+        }
+        if (isset($datas["value"])) {
+            $this->setValue($datas["value"]);
+        }
+        if (isset($datas["name"])) {
+            $this->setAuthor($datas["name"]);
+        }
+        
+    }
     /**
      * Get the value of id
      */ 

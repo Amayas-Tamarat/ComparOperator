@@ -9,6 +9,25 @@ class TourOperator{
     private array $reviews;
     private array $scores;
 
+
+    public function __construct(array $datas)
+    {
+        $this->hydrate($datas);
+    }
+
+    public function hydrate($datas)
+    {
+        if (isset($datas["id"])) {
+            $this->setId($datas["id"]);
+        }
+        if (isset($datas["name"])) {
+            $this->setName($datas["name"]);
+        }
+        if (isset($datas["link"])) {
+            $this->setLink($datas["link"]);
+        }
+        
+    }
     /**
      * Get the value of id
      */ 

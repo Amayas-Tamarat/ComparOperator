@@ -5,6 +5,21 @@ class Certificate {
     private  string $signatory;
 
 
+    public function __construct(array $datas)
+    {
+        $this->hydrate($datas);
+    }
+
+    public function hydrate($datas)
+    {
+        if (isset($datas["expires_at"])) {
+            $this->setExpiresAt($datas["expires_at"]);
+        }
+        if (isset($datas["signatory"])) {
+            $this->setSignatory($datas["signatory"]);
+        }
+        
+    }
     /**
      * Get the value of expiresAt
      */ 
