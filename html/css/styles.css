@@ -1,11 +1,14 @@
 body{
+    
+    margin:0px;
+    padding:0px;
+}
+.accueil{
     background-image: url("../assets/picture/bg.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
     height: 100vh;
-    margin:0px;
-    padding:0px;
 }
 html{
     margin:0px;

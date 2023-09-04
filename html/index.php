@@ -14,7 +14,7 @@ require_once('./connect/connect.php');
 
 <body>
     <!----HEADER PART--->
-    <div>
+    <div class="accueil">
         <?php
             include('./partials/nav.php')
         ?>
@@ -25,7 +25,9 @@ require_once('./connect/connect.php');
     </div>
     <!---- PART--->
     <div class="listDestination">
-       
+       <?php
+       include('./partials/listDestinations.php')
+       ?>
     </div>
 
     

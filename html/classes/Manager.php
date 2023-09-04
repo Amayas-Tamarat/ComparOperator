@@ -27,6 +27,10 @@ class Manager{
         return $this;
     }
 
+    public function tourOperator(TourOperator $tourOperator):TourOperator
+    {
+
+    }
     public  function getAllDestination():array
     {
         $statement = $this->getDb()->prepare('SELECT * FROM destination');
@@ -41,5 +45,19 @@ class Manager{
         return $listeDestinations;
     }
 
+    public function getOperatorByDestination(Destination $destination):array
+    {
+        $id= $destination->getId();
+        $statement = $this->getDb()->prepare('SELECT * FROM destination JOIN tour_operator ON destination.tour_operator_id = tour_operator.id  WHERE tour_operator_id = :id');
+        $statement->bindParam('id', $id, PDO::PARAM_INT);
+        $statement->execute();
+        $operators = $statement->fetchAll();
+
+        $listeOperators = [];
+        foreach($operators as $operator){
+            $listeOperators[] = $operator;
+        }
+        return $listeOperators;
+    }
  
 }
