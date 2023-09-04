@@ -5,6 +5,24 @@ class Review {
     private string $message;
     private string $author;
 
+    public function __construct(array $datas)
+    {
+        $this->hydrate($datas);
+    }
+
+    public function hydrate($datas)
+    {
+        if (isset($datas["id"])) {
+            $this->setId($datas["id"]);
+        }
+        if (isset($datas["message"])) {
+            $this->setMessage($datas["message"]);
+        }
+        if (isset($datas["name"])) {
+            $this->setAuthor($datas["name"]);
+        }
+        
+    }
     /**
      * Get the value of id
      */ 
