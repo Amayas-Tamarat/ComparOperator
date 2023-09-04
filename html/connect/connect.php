@@ -1,9 +1,9 @@
 <?php 
 $user = 'root';
-$pass = 'root';
+$pass = '';
 
 try {
-    $db = new PDO('mysql:host=mysql;dbname=', $user, $pass);
+    $db = new PDO('mysql:host=localhost;dbname=', $user, $pass);
 } catch (PDOException $e) {
       print "Erreur ! : " . $e->getMessage() . "<br/>";
       die();
