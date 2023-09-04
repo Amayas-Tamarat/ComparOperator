@@ -4,44 +4,33 @@ require_once('./connect/connect.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="./css/styles.css">
 </head>
+
 <body>
     <!----HEADER PART--->
     <div>
-        <div class="header">
-            <div class="logo">
-                <img src="./assets/picture/logo.jpg" alt="logo bon voyage">
-            </div>
-            <nav>
-                <ul>
-                    <li><a href="">Accueil</a></li>
-                    <li><a href="">Page 2</a></li>
-                    <li><a href="">Page 3</a></li>
-                    <li><a href="">Page 4</a></li>
-                    <li><a href="">Page 5</a></li>
-                    <li><a href="">Page 6</a></li>
-                </ul>
-            </nav>
-        </div>
-        
+        <?php
+            include('./partials/nav.php')
+        ?>
+
         <div>
             <h2>Bon voyage</h2>
-
-        <?php
-            $manager = new Manager($db);
-
-           var_dump( $manager->getAllDestination());
-        ?>
         </div>
     </div>
-    <!----HEADER PART--->
-    <div>
-        
+    <!---- PART--->
+    <div class="listDestination">
+       
     </div>
+
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
 </body>
+
 </html>
