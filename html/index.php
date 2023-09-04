@@ -1,6 +1,6 @@
 <?php
-
-require_once('./connect/connect.php')
+require_once('./connect/autoload.php');
+require_once('./connect/connect.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -31,6 +31,12 @@ require_once('./connect/connect.php')
         
         <div>
             <h2>Bon voyage</h2>
+
+        <?php
+            $manager = new Manager($db);
+
+           var_dump( $manager->getAllDestination());
+        ?>
         </div>
     </div>
     <!----HEADER PART--->

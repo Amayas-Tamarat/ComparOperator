@@ -5,6 +5,10 @@ class Destination {
     private int $price;
 
 
+    public function __construct(array $datas)
+    {
+        $this->hydrate($datas);
+    }
     /**
      * Get the value of id
      */ 
@@ -63,5 +67,19 @@ class Destination {
         $this->price = $price;
 
         return $this;
+    }
+
+    public function hydrate($datas)
+    {
+        if (isset($datas["id"])) {
+            $this->setId($datas["id"]);
+        }
+        if (isset($datas["location"])) {
+            $this->setLocation($datas["location"]);
+        }
+        if (isset($datas["price"])) {
+            $this->setPrice($datas["price"]);
+        }
+        
     }
 }
