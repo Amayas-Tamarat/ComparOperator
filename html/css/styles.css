@@ -1,3 +1,46 @@
 html,body{
-    ba
+    background-image: url("../assets/picture/bg.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    margin:0px;
+    padding:0px;
+}
+
+
+/*----------HEADER PART--------------*/
+li{
+    list-style: none;
+}
+ul>li>a{
+    text-decoration: none;
+    color:#fef4e8;   
+}
+nav{
+    width:100%;
+}
+h2{
+    font-size:50px;
+    color:#fef4e8;
+    width:100%;  
+}
+
+.logo>img{
+    height:100px;
+}
+
+ul{
+    display: flex;
+    justify-content: center;
+    align-self: center;
+}
+.header{
+    display: flex;
+}
+ul>li>a{
+    align-items: center;
+    align-self:center;
+    margin:auto;
+    
 }
