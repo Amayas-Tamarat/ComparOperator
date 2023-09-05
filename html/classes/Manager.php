@@ -36,6 +36,18 @@ class Manager{
 
         return $tourOperator;
     }
+    public function createAllTourOperator(array $allTourOperators):array
+    {
+        $listTourOperator=[];
+        foreach($allTourOperators as $tourOperator){
+            $this->addDestinationToOperator($tourOperator);
+            $this->addCertificateToOperator($tourOperator);
+            $this->addScoreToOperator($tourOperator);
+            $this->addReviewtoOperator($tourOperator);
+            $listTourOperator[] = $tourOperator; 
+        }
+        return $listTourOperator;
+    }
 
     public function findOperatorById($idOperator):TourOperator
     {
@@ -46,6 +58,21 @@ class Manager{
         $tourOperator = new TourOperator($operators);
 
         return $tourOperator;
+    }
+    public function findAllTourOperator():array
+    {
+        $statement = $this->getDb()->prepare('SELECT * FROM tour_operator');
+        $statement->execute();
+        $operators = $statement->fetchAll();
+        
+        $listTourOperators = [];
+        foreach($operators as $operator)
+        {
+            $tourOperator = new TourOperator($operator);
+            $listTourOperators[] = $tourOperator;
+        }
+
+        return $listTourOperators;
     }
 
     public function addCertificateToOperator(TourOperator $tourOperator):void

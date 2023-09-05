@@ -31,8 +31,8 @@ require_once('./connect/connect.php');
        include('./partials/listDestinations.php');
 
        $manager = new Manager($db);
-       $operator = $manager->findOperatorById(2);
-       var_dump($manager->createTourOperator($operator));
+       $operator = $manager->findAllTourOperator();
+       var_dump($manager->createAllTourOperator($operator));
        ?>
     </div>
 
