@@ -167,7 +167,7 @@ class Manager{
         return $idOperator;
     }
  
-    public function addDestination(Destination $destination):void
+    public function createDestination(Destination $destination):void
     {
         $req = $this->getDb()->prepare("INSERT INTO destination (location, price, tour_operator_id) 
         VALUES (:location, :price, :tour_operator_id)");
@@ -183,9 +183,14 @@ class Manager{
         $sql = "DELETE FROM destination WHERE id = :id";
         $stmt = $this->db->prepare($sql);
         $stmt->bindParam(':id', $idDestination, PDO::PARAM_INT);
+    
+        if ($stmt->execute()) {
+            echo "Destination with ID $idDestination has been deleted.";
+        } else {
+            echo "Error deleting destination with ID $idDestination.";
+        }
     }
 
-    
     public  function getAllDestination():array
     {
         $statement = $this->getDb()->prepare('SELECT * FROM destination');
@@ -199,6 +204,5 @@ class Manager{
         }
         return $listeDestinations;
     }
-
 
 }
