@@ -27,7 +27,7 @@ class Manager{
         return $this;
     }
 
-    public function tourOperator(TourOperator $tourOperator):TourOperator
+    public function tourOperator(TourOperator $tourOperator):
     {
 
     }
@@ -72,5 +72,9 @@ class Manager{
         }
         return $listeOperators;
     }
- 
+
+    public function addImageToDestination()
+    {
+
+    }
 }
