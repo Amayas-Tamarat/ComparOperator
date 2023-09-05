@@ -181,7 +181,6 @@ class Manager{
         $stmt->bindParam(':id', $idDestination, PDO::PARAM_INT);
     }
 
-    
     public  function getAllDestination():array
     {
         $statement = $this->getDb()->prepare('SELECT * FROM destination');
@@ -195,6 +194,4 @@ class Manager{
         }
         return $listeDestinations;
     }
-
-
 }
