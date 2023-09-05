@@ -191,5 +191,18 @@ class Manager{
         }
     }
 
+    public  function getAllDestination():array
+    {
+        $statement = $this->getDb()->prepare('SELECT * FROM destination');
+        $statement->execute();
+        $destinations = $statement->fetchAll();
+        $listeDestinations = [];
+
+        foreach($destinations as $destination){
+            $desti = new Destination($destination);
+            $listeDestinations[] = $desti;
+        }
+        return $listeDestinations;
+    }
 
 }
