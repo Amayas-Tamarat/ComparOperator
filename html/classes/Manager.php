@@ -45,6 +45,19 @@ class Manager{
         return $listeDestinations;
     }
 
+    public function displayAllDestination()
+    {
+        $destinations = $this->getAllDestination();
+
+        foreach ($destinations as $destination) {
+            echo '<div>';
+            echo 'id =' . $destination->getId() . '<br>';
+            echo 'location =' . $destination->getLocation() . '<br>';
+            echo 'price =' . $destination->getPrice() . '<br>';
+            echo '</div>';
+        }
+    }
+
     public function getOperatorByDestination(Destination $destination):array
     {
         $id= $destination->getId();
