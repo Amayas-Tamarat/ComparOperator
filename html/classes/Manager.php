@@ -147,6 +147,7 @@ class Manager{
             echo 'id =' . $destination->getId() . '<br>';
             echo 'location =' . $destination->getLocation() . '<br>';
             echo 'price =' . $destination->getPrice() . '<br>';
+            echo 'images = ' . $destination->getImages() . '<br>';	
             echo '</div>';
         }
     }
@@ -194,5 +195,6 @@ class Manager{
         }
         return $listeDestinations;
     }
+
 
 }

@@ -3,6 +3,7 @@ class Destination {
     private int $id;
     private string $location;
     private int $price;
+    private string $images;
 
 
     public function __construct(array $datas)
@@ -21,7 +22,9 @@ class Destination {
         if (isset($datas["price"])) {
             $this->setPrice($datas["price"]);
         }
-        
+        if (isset($datas['images'])) {
+            $this->setPrice($datas['images']);
+        }
     }
     /**
      * Get the value of id
@@ -83,5 +86,23 @@ class Destination {
         return $this;
     }
 
+    /**
+     * Get the value of images
+     */ 
+    public function getImages()
+    {
+        return $this->images;
+    }
 
+    /**
+     * Set the value of images
+     *
+     * @return  self
+     */ 
+    public function setImages($images)
+    {
+        $this->images = $images;
+
+        return $this;
+    }
 }
