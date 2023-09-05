@@ -1,6 +1,8 @@
 <?php
 require_once('./connect/autoload.php');
 require_once('./connect/connect.php');
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -26,7 +28,11 @@ require_once('./connect/connect.php');
     <!---- PART--->
     <div class="listDestination">
        <?php
-       include('./partials/listDestinations.php')
+       include('./partials/listDestinations.php');
+
+       $manager = new Manager($db);
+       $operator = $manager->findOperatorById(2);
+       var_dump($manager->createTourOperator($operator));
        ?>
     </div>
 

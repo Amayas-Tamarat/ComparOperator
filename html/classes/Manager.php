@@ -29,27 +29,86 @@ class Manager{
 
     public function createTourOperator(TourOperator $tourOperator):TourOperator
     {
+        $this->addDestinationToOperator($tourOperator);
+        $this->addCertificateToOperator($tourOperator);
+        $this->addScoreToOperator($tourOperator);
+        $this->addReviewtoOperator($tourOperator);
 
         return $tourOperator;
     }
 
-    public  function getAllDestination():array
+    public function findOperatorById($idOperator):TourOperator
     {
-        $statement = $this->getDb()->prepare('SELECT * FROM destination');
+        $statement = $this->getDb()->prepare('SELECT * FROM tour_operator WHERE id = :id');
+        $statement->bindParam('id', $idOperator, PDO::PARAM_INT);
         $statement->execute();
-        $destinations = $statement->fetchAll();
-        $listeDestinations = [];
+        $operators = $statement->fetch();
+        $tourOperator = new TourOperator($operators);
 
-        foreach($destinations as $destination){
-            $desti = new Destination($destination);
-            $listeDestinations[] = $desti;
-        }
-        return $listeDestinations;
+        return $tourOperator;
     }
 
-    public function getCertificate($idTourOperator)
+    public function addCertificateToOperator(TourOperator $tourOperator):void
     {
+        $id = $tourOperator->getId();
+        $statement = $this->getDb()->prepare('SELECT * FROM certificate WHERE tour_operator_id = :id');
+        $statement->bindParam('id', $id, PDO::PARAM_INT);
+        $statement->execute();
+        $operators = $statement->fetch();
 
+        $certificate = new Certificate($operators);
+        $tourOperator->setCertificate($certificate);
+    }
+
+    public function addScoreToOperator(TourOperator $tourOperator):void
+    {
+        $id = $tourOperator->getId();
+        $statement = $this->getDb()->prepare('SELECT * FROM score JOIN author ON score.author_id = author.id WHERE tour_operator_id = :id');
+        $statement->bindParam('id', $id, PDO::PARAM_INT);
+        $statement->execute();
+        $scores = $statement->fetchAll();
+
+        $listScores = [];
+        foreach($scores as $score)
+        {
+            $newScore = new Score($score);
+            $listScores[] = $newScore;
+        }
+        $tourOperator->setScores($listScores);
+    }
+
+    public function addReviewtoOperator(TourOperator $tourOperator):void
+    {
+        $id = $tourOperator->getId();
+        $statement = $this->getDb()->prepare('SELECT * FROM review JOIN author ON review.author_id = author.id WHERE tour_operator_id = :id');
+        $statement->bindParam('id', $id, PDO::PARAM_INT);
+        $statement->execute();
+        $reviews = $statement->fetchAll();
+
+        $listReviews = [];
+        foreach($reviews as $review)
+        {
+            $newreview = new Review($review);
+            $listReviews[] = $newreview;
+        }
+        $tourOperator->setReviews($listReviews);
+    }
+
+    public function addDestinationToOperator(TourOperator $tourOperator):void
+    {
+        $id = $tourOperator->getId();
+        $statement = $this->getDb()->prepare('SELECT * FROM destination WHERE tour_operator_id = :id');
+        $statement->bindParam('id', $id, PDO::PARAM_INT);
+        $statement->execute();
+        $destinations = $statement->fetchAll();
+
+        $listDestinations = [];
+        foreach($destinations as $destination)
+        {
+            $newdestination = new Destination($destination);
+            $listDestinations[] = $newdestination;
+        }
+        $tourOperator->setDestinations($listDestinations);
     }
 
     public function displayAllDestination():void
@@ -65,20 +124,15 @@ class Manager{
         }
     }
 
-    public function getOperatorByDestination(Destination $destination):array
+    public function getOperatorByDestination(Destination $destination):int
     {
         $id= $destination->getId();
-        $statement = $this->getDb()->prepare('SELECT * FROM destination JOIN tour_operator 
-        ON destination.tour_operator_id = tour_operator.id  WHERE tour_operator_id = :id');
+        $statement = $this->getDb()->prepare('SELECT tour_operator_id FROM destination WHERE tour_operator_id = :id');
         $statement->bindParam('id', $id, PDO::PARAM_INT);
         $statement->execute();
-        $operators = $statement->fetchAll();
+        $idOperator = $statement->fetch();
 
-        $listeOperators = [];
-        foreach($operators as $operator){
-            $listeOperators[] = $operator;
-        }
-        return $listeOperators;
+        return $idOperator;
     }
  
     public function addDestination(Destination $destination):void
@@ -96,6 +150,22 @@ class Manager{
     {
         $sql = "DELETE FROM destination WHERE id = :id";
         $stmt = $this->db->prepare($sql);
-        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->bindParam(':id', $idDestination, PDO::PARAM_INT);
     }
+
+    
+    public  function getAllDestination():array
+    {
+        $statement = $this->getDb()->prepare('SELECT * FROM destination');
+        $statement->execute();
+        $destinations = $statement->fetchAll();
+        $listeDestinations = [];
+
+        foreach($destinations as $destination){
+            $desti = new Destination($destination);
+            $listeDestinations[] = $desti;
+        }
+        return $listeDestinations;
+    }
+
 }
