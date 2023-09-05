@@ -205,4 +205,99 @@ class Manager{
         return $listeDestinations;
     }
 
+    public function displayReviews(TourOperator $tourOperator)
+    {
+        foreach($tourOperator->getReviews() as $review)
+        {
+            echo '<p> Message :' . $review->getMessage() . '</p>';
+        }
+    }
+
+    public function insertReview(TourOperator $tourOperator, $name, $rate, $comments):void
+    {
+        $idTourOperator = $tourOperator->getId();
+        if($this->getAuthorId($name) != ""){
+            $idAuthor = $this->getAuthorId($name);
+        }else{
+            $idAuthor = $this->insertAuthor($name);
+        }
+        if(!$this->authorAlreadyPosted($idTourOperator,$idAuthor)){
+            $this->insertMessage($idTourOperator,$comments,$idAuthor);
+            $this->insertScore($idTourOperator,$rate,$idAuthor);
+        }else{
+            echo" LE gars a déja posté !!!!";
+        }
+        
+    }
+
+    public function getAuthorId($name):int|null
+    {
+        $statement = $this->getDb()->prepare('SELECT id FROM author WHERE name = :name');
+        $statement->bindParam('name', $name, PDO::PARAM_STR);
+        $statement->execute();
+        
+        $nombre = $statement->fetch();
+        if($nombre!="" ){
+            return $nombre[0];
+        }else 
+            return null;
+    }
+
+    public function insertAuthor($name):int
+    {
+        $req = $this->getDb()->prepare("INSERT INTO author (name) VALUES (:name)");
+    
+        if ($req->execute(array('name' => $name))) {
+            return $this->getDb()->lastInsertId();
+        }
+    }
+
+    public function insertMessage($idTourOperator, $message, $idAuthor):void
+    {
+        $req = $this->getDb()->prepare("INSERT INTO review (message,tour_operator_id, author_id) 
+        VALUES (:message,:tour_operator_id,:author_id)");
+    
+        $req->execute(array(
+            'message' => $message,
+            'tour_operator_id' => $idTourOperator,
+            'author_id'=>$idAuthor
+        )) ; 
+    }
+
+    public function insertScore($idTourOperator, $score, $idAuthor):void
+    {
+        $req = $this->getDb()->prepare("INSERT INTO score (value,tour_operator_id, author_id) 
+        VALUES (:value,:tour_operator_id,:author_id)");
+    
+        $req->execute(array(
+            'value' => $score,
+            'tour_operator_id' => $idTourOperator,
+            'author_id'=>$idAuthor
+        )) ; 
+    }
+
+    public function authorAlreadyPosted($idTourOperator, $idAuthor):bool
+    {
+        $statement = $this->getDb()->prepare('SELECT * FROM review WHERE tour_operator_id = :tour_operator_id AND author_id = :author_id');
+        $statement->bindParam('tour_operator_id', $idTourOperator, PDO::PARAM_INT);
+        $statement->bindParam('author_id', $idAuthor, PDO::PARAM_INT);
+        $statement->execute();
+        
+        $bool = $statement->fetch();
+
+        if($bool){
+            return true;
+        }else
+            return false;
+    }
+    public function tourNote(TourOperator $tourOperator):float
+    {
+        $id = $tourOperator->getId();
+        $statement = $this->getDb()->prepare('SELECT AVG(value) FROM score WHERE tour_operator_id = :id');
+        $statement->bindParam('id', $id, PDO::PARAM_INT);
+        $statement->execute();
+
+        $note = $statement->fetch();
+        return $note[0];
+    }
 }

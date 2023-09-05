@@ -79,6 +79,12 @@ ul{
     height: 400px;
     width:400px;
 }
+/*-------REVIEW----------*/
+.reviewForm{
+    display:flex;
+    flex-direction: column;
+    width:30%;
+}
 
 /*-----------------*/
 
