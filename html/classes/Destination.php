@@ -3,7 +3,7 @@ class Destination {
     private int $id;
     private string $location;
     private int $price;
-    private array $images = [];
+    private string $images;
 
 
     public function __construct(array $datas)

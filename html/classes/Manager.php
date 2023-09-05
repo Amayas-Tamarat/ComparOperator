@@ -27,10 +27,10 @@ class Manager{
         return $this;
     }
 
-    public function tourOperator(TourOperator $tourOperator):
-    {
+    // public function tourOperator(TourOperator $tourOperator):
+    // {
 
-    }
+    // }
     public  function getAllDestination():array
     {
         $statement = $this->getDb()->prepare('SELECT * FROM destination');
@@ -54,6 +54,7 @@ class Manager{
             echo 'id =' . $destination->getId() . '<br>';
             echo 'location =' . $destination->getLocation() . '<br>';
             echo 'price =' . $destination->getPrice() . '<br>';
+            echo 'images = ' . $destination->getImages() . '<br>';	
             echo '</div>';
         }
     }
@@ -73,8 +74,4 @@ class Manager{
         return $listeOperators;
     }
 
-    public function addImageToDestination()
-    {
-
-    }
 }
