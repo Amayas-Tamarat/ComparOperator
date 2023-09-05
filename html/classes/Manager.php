@@ -27,10 +27,12 @@ class Manager{
         return $this;
     }
 
-    public function tourOperator(TourOperator $tourOperator):TourOperator
+    public function createTourOperator(TourOperator $tourOperator):TourOperator
     {
 
+        return $tourOperator;
     }
+
     public  function getAllDestination():array
     {
         $statement = $this->getDb()->prepare('SELECT * FROM destination');
@@ -45,7 +47,12 @@ class Manager{
         return $listeDestinations;
     }
 
-    public function displayAllDestination()
+    public function getCertificate($idTourOperator)
+    {
+
+    }
+
+    public function displayAllDestination():void
     {
         $destinations = $this->getAllDestination();
 
@@ -61,7 +68,8 @@ class Manager{
     public function getOperatorByDestination(Destination $destination):array
     {
         $id= $destination->getId();
-        $statement = $this->getDb()->prepare('SELECT * FROM destination JOIN tour_operator ON destination.tour_operator_id = tour_operator.id  WHERE tour_operator_id = :id');
+        $statement = $this->getDb()->prepare('SELECT * FROM destination JOIN tour_operator 
+        ON destination.tour_operator_id = tour_operator.id  WHERE tour_operator_id = :id');
         $statement->bindParam('id', $id, PDO::PARAM_INT);
         $statement->execute();
         $operators = $statement->fetchAll();
@@ -73,4 +81,21 @@ class Manager{
         return $listeOperators;
     }
  
+    public function addDestination(Destination $destination):void
+    {
+        $req = $this->getDb()->prepare("INSERT INTO destination (location, price, tour_operator_id) 
+        VALUES (:location, :price, :tour_operator_id)");
+        if($req->execute(array(
+            'location'=>$destination->getLocation(),
+            'price'=>$destination->getPrice(),
+            'tour_operator_id'=>$destination->getId()
+        )));
+        
+    }
+    public function removeDestination($idDestination):void
+    {
+        $sql = "DELETE FROM destination WHERE id = :id";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+    }
 }
