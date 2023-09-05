@@ -82,9 +82,13 @@ class Manager{
         $statement->bindParam('id', $id, PDO::PARAM_INT);
         $statement->execute();
         $operators = $statement->fetch();
+        
+        if($operators != ""){
+            $certificate = new Certificate($operators);
+            $tourOperator->setCertificate($certificate);
+        }
 
-        $certificate = new Certificate($operators);
-        $tourOperator->setCertificate($certificate);
+        
     }
 
     public function addScoreToOperator(TourOperator $tourOperator):void

@@ -23,7 +23,7 @@ class Destination {
             $this->setPrice($datas["price"]);
         }
         if (isset($datas['images'])) {
-            $this->setPrice($datas['images']);
+            $this->setImages($datas['images']);
         }
     }
     /**

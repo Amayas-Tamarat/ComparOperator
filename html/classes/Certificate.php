@@ -1,8 +1,8 @@
 <?php
 
 class Certificate {
-    private string $expiresAt;
-    private  string $signatory;
+    private string $expiresAt ="";
+    private  string $signatory = "";
 
 
     public function __construct(array $datas)
