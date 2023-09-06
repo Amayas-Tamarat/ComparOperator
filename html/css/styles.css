@@ -1,3 +1,14 @@
+@font-face {
+    font-family: baskerville-italic;
+    src: url('../assets/font/LibreBaskerville-Italic.ttf');
+}
+@font-face {
+    font-family: baskerville;
+    src: url('../assets/font/LibreBaskerville-Regular.ttf');
+}
+*{
+    font-family: 'baskerville';
+}
 body {
 
     margin: 0px;
@@ -45,11 +56,12 @@ nav {
 h3{
     font-size:35px;
     color:#1c89ab;
+    font-family: 'baskerville-italic';
 }
 
-h2 {
+h2{
     font-size: 50px;
-    color: #fef4e8;
+    color: white;
     width: 100%;
 }
 
@@ -151,8 +163,10 @@ ul {
 }
 
 
-
-/* //////// */
+/*------list Tour operator------*/
+.starContainer{
+    display: flex;
+}
 
 
 /*-----------------*/

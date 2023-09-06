@@ -19,7 +19,7 @@ require_once('./connect/connect.php');
     <!----HEADER PART--->
     <div class="accueil">
         <?php
-        include('./partials/nav.php')
+            include('./partials/nav.php');
         ?>
 
         <div>
