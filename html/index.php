@@ -23,7 +23,8 @@ require_once('./connect/connect.php');
         ?>
 
         <div>
-            <h2>Bon voyage</h2>
+            <h2 class="titre">Bon voyage</h2>
+            <p class="slogan">Trouvez les voyages de vos rêves au meilleur tarif !</p>
         </div>
     </div>
 
@@ -35,7 +36,7 @@ require_once('./connect/connect.php');
         $listeDestinations = $destinations->getAllDestination();
         ?>
 
-        <div class="container d-flex flex-wrap">
+        <div class="container d-flex flex-row">
             <?php foreach ($listeDestinations as $destination) : ?>
                 <div class="card">
                     <a href="./listTourOperators.php?tour_operator_id=<?php echo $destination->getTour_operator_id(); ?>">
@@ -43,13 +44,18 @@ require_once('./connect/connect.php');
                     
                     <div class="overlay">
                         <?php echo $destination->getLocation() . "<br>";
-                        echo $destination->getPrice(); ?>
+                        echo $destination->getPrice() . '€'; ?>
                     </div>
                     </a>
                 </div>
             <?php endforeach; ?>
         </div>
+        <?php
+   
+  
+   
 
+  ?>
 
         
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
