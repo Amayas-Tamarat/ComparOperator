@@ -10,7 +10,7 @@ $tourOperator =$manager->createTourOperator($operator);
 
 if(isset($_POST['name']) && $_POST['name'] !=""){
     $manager->insertReview($tourOperator, $_POST['name'],$_POST['note'],$_POST['comments'] );
-    header("Location: ./listTourOperators.php");  
+    header("Location: ./listTourOperators.php?tour_operator_id=".$idTourOperator);  
 }
 ?>
 <!DOCTYPE html>
