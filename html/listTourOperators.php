@@ -52,7 +52,6 @@ if(isset($_POST['name']) && $_POST['name'] !=""){
     </div>
     <script type="text/javascript">
         let note = <?php echo json_encode($manager->tourNote($tourOperator)); ?>;
-       
     </script>
     <script src="./js/main.js"></script>
 </body>
