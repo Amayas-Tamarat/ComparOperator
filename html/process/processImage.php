@@ -14,7 +14,7 @@ if (isset($_FILES['file'])) {
     //Tableau des extensions que l'on accepte
     $extensions = ['jpg', 'png', 'jpeg', 'gif'];
     //Taille max que l'on accepte
-    $maxSize = 400000;
+    $maxSize = 4000000;
 
     if (in_array($extension, $extensions) && $size <= $maxSize && $error == 0) {
 
