@@ -110,11 +110,9 @@ ul {
 
 .overlay {
     display: block;
-    /* Montrez initialement l'overlay */
+    pointer-events: none;
     opacity: 0;
-    /* Réglez l'opacité initiale à 0 */
     transition: opacity 0.3s ease-in-out;
-    /* Ajoutez une transition pour l'opacité */
     position: absolute;
     top: 0;
     left: 0;
@@ -128,7 +126,6 @@ ul {
 
 .card:hover .overlay {
     opacity: 1;
-    /* Lors du survol, réglez l'opacité à 1 pour afficher l'overlay */
 }
 
 
