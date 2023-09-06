@@ -1,8 +1,8 @@
-let star = document.querySelector('.star');
-let note = 4;
+let stars = document.querySelectorAll('.star');
+
 
 window.onload = function(e) {
     for (let i = 0; i < note; i++) {
-        star[i].classList.add('yellow');
+        stars[i].classList.add('yellow');
     }
 };

@@ -295,7 +295,7 @@ class Manager{
         }else
             return false;
     }
-    public function tourNote(TourOperator $tourOperator):int|null
+    public function tourNote(TourOperator $tourOperator):int
     {
         $id = $tourOperator->getId();
         $statement = $this->getDb()->prepare('SELECT AVG(value) FROM score WHERE tour_operator_id = :id');
@@ -305,6 +305,7 @@ class Manager{
         $note = $statement->fetch();
         if($note[0] != ""){
             return round($note[0], 0, PHP_ROUND_HALF_UP);
-        }
+        }else
+            return 0;
     }
 }
