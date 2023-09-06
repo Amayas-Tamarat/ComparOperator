@@ -295,7 +295,7 @@ class Manager{
         }else
             return false;
     }
-    public function tourNote(TourOperator $tourOperator):float
+    public function tourNote(TourOperator $tourOperator):int|string
     {
         $id = $tourOperator->getId();
         $statement = $this->getDb()->prepare('SELECT AVG(value) FROM score WHERE tour_operator_id = :id');
@@ -303,6 +303,10 @@ class Manager{
         $statement->execute();
 
         $note = $statement->fetch();
-        return $note[0];
+        if($note[0] != ""){
+            return $note[0];
+        }else
+            return "-";
+        
     }
 }

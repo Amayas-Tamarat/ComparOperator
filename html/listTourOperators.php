@@ -2,8 +2,10 @@
 require_once('./connect/autoload.php');
 require_once('./connect/connect.php');
 
+$idTourOperator = $_GET['tour_operator_id'];
+
 $manager = new Manager($db);
-$operator = $manager->findOperatorById(3);
+$operator = $manager->findOperatorById($idTourOperator);
 $tourOperator =$manager->createTourOperator($operator);
 
 if(isset($_POST['name']) && $_POST['name'] !=""){
