@@ -18,7 +18,7 @@ require_once('./connect/connect.php');
     <!----HEADER PART--->
     <div class="accueil">
         <?php
-            include('./partials/nav.php')
+        include('./partials/nav.php')
         ?>
 
         <div>
@@ -27,17 +27,57 @@ require_once('./connect/connect.php');
     </div>
     <!---- PART--->
     <div class="listDestination">
-       <?php
-       include('./partials/listDestinations.php');
+        <?php
+        include('./partials/listDestinations.php');
 
-       $manager = new Manager($db);
-       $operator = $manager->findAllTourOperator();
-       var_dump($manager->createAllTourOperator($operator));
-       ?>
+        $manager = new Manager($db);
+        $operator = $manager->findAllTourOperator();
+        var_dump($manager->createAllTourOperator($operator));
+        ?>
     </div>
-    
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+
+    <!-- IMAGE -->
+
+    <div class="">
+        <?php
+        $destinations = new Manager($db);
+        $listeDestinations = $destinations->getAllDestination(); 
+        ?>
+
+        <div class="d-flex">
+            <div class="card">
+                <img src='./upload/<?php echo $listeDestinations[0]->getImages(); ?>' class='img-fluid'>
+                <div class="overlay">
+                    <?php echo $listeDestinations[0]->getLocation() . "<br>";
+                    echo $listeDestinations[0]->getPrice(); ?>
+                </div>
+            </div>
+            <div class="card">
+                <img src='./upload/<?php echo $listeDestinations[1]->getImages(); ?>' class='img-fluid'>
+                <div class="overlay">
+                    <?php echo $listeDestinations[1]->getLocation() . "<br>";
+                    echo $listeDestinations[1]->getPrice(); ?>
+                </div>
+            </div>
+            <div class="card">
+                <img src='./upload/<?php echo $listeDestinations[2]->getImages(); ?>' class='img-fluid'>
+                <div class="overlay">
+                    <?php echo $listeDestinations[2]->getLocation() . "<br>";
+                    echo $listeDestinations[2]->getPrice(); ?>
+                </div>
+            </div>
+            <div class="card">
+                <img src='./upload/<?php echo $listeDestinations[3]->getImages(); ?>' class='img-fluid'>
+                <div class="overlay">
+                    <?php echo $listeDestinations[3]->getLocation() . "<br>";
+                    echo $listeDestinations[3]->getPrice(); ?>
+                </div>
+            </div>
+        </div>
+
+
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
 </body>
 
 </html>

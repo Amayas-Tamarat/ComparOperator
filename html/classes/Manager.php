@@ -194,6 +194,7 @@ class Manager{
         }
     }
 
+
     public  function getAllDestination():array
     {
         $statement = $this->getDb()->prepare('SELECT * FROM destination');
