@@ -151,8 +151,18 @@ ul {
 /*------list Tour operator------*/
 .starContainer{
     display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    vertical-align: center;
+    margin:auto;
+   
 }
-
+.starContainer>p{
+    vertical-align: center;
+}
+.yellow{
+    fill:yellow;
+}
 
 /*-----------------*/
 

@@ -213,7 +213,7 @@ class Manager{
     {
         foreach($tourOperator->getReviews() as $review)
         {
-            echo '<p> Message :' . $review->getMessage() . '</p>';
+            echo '<p>'. $review->getAuthor() .' : ' . $review->getMessage() . '</p>';
         }
     }
 
@@ -295,7 +295,7 @@ class Manager{
         }else
             return false;
     }
-    public function tourNote(TourOperator $tourOperator):int|null
+    public function tourNote(TourOperator $tourOperator):int
     {
         $id = $tourOperator->getId();
         $statement = $this->getDb()->prepare('SELECT AVG(value) FROM score WHERE tour_operator_id = :id');
@@ -305,6 +305,17 @@ class Manager{
         $note = $statement->fetch();
         if($note[0] != ""){
             return round($note[0], 0, PHP_ROUND_HALF_UP);
-        }
+        }else
+            return 0;
+    }
+    public function countNote(TourOperator $tourOperator):int|null
+    {
+        $id = $tourOperator->getId();
+        $statement = $this->getDb()->prepare('SELECT COUNT(*) FROM score WHERE tour_operator_id = :id');
+        $statement->bindParam('id', $id, PDO::PARAM_INT);
+        $statement->execute();
+
+        $count = $statement->fetch();
+        return $count[0];
     }
 }
