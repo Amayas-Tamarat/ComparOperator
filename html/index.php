@@ -37,11 +37,16 @@ require_once('./connect/connect.php');
     </div>
 
     <!-- IMAGE -->
+
+    <div class="">
+        <?php
+        $destinations = new Manager($db);
+        $listeDestinations = $destinations->getAllDestination(); 
+        ?>
+
         <div class="d-flex">
             <div class="card">
-                <a href="./listTourOperators.php">
                 <img src='./upload/<?php echo $listeDestinations[0]->getImages(); ?>' class='img-fluid'>
-                </a>
                 <div class="overlay">
                     <?php echo $listeDestinations[0]->getLocation() . "<br>";
                     echo $listeDestinations[0]->getPrice(); ?>
