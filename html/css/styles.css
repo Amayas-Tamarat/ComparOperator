@@ -110,7 +110,7 @@ ul {
 
 .overlay {
     display: block;
-    pointer-events: none;
+    pointer-events: none !important;
     opacity: 0;
     transition: opacity 0.3s ease-in-out;
     position: absolute;
@@ -122,10 +122,12 @@ ul {
     color: white;
     text-align: center;
     padding: 20px;
+    z-index: 1 !important;
 }
 
 .card:hover .overlay {
     opacity: 1;
+    z-index: -1 !important;
 }
 
 
