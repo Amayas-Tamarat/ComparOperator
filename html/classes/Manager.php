@@ -316,6 +316,6 @@ class Manager{
         $statement->execute();
 
         $count = $statement->fetch();
-        return $count;
+        return $count[0];
     }
 }
