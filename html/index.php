@@ -40,11 +40,12 @@ require_once('./connect/connect.php');
                 <div class="card">
                     <a href="./listTourOperators.php?tour_operator_id=<?php echo $destination->getTour_operator_id(); ?>">
                         <img src='./upload/<?php echo $destination->getImages(); ?>' class='img-fluid'>
-                    </a>
-                    <!-- <div class="overlay">
+                    
+                    <div class="overlay">
                         <?php echo $destination->getLocation() . "<br>";
                         echo $destination->getPrice(); ?>
-                    </div> -->
+                    </div>
+                    </a>
                 </div>
             <?php endforeach; ?>
         </div>
