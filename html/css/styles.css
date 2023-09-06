@@ -109,7 +109,9 @@ ul {
 }
 
 .overlay {
-    display: block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     pointer-events: none !important;
     opacity: 0;
     transition: opacity 0.3s ease-in-out;
@@ -118,17 +120,21 @@ ul {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: rgba(0, 0, 0, 0.5);
     color: white;
     text-align: center;
     padding: 20px;
     z-index: 1 !important;
+    transition-delay: 0.2s;
+    font-size: 45px;
 }
 
 .card:hover .overlay {
     opacity: 1;
-    z-index: -1 !important;
+    z-index: 1 !important; 
+    transition-delay: 0s; 
 }
+
 
 
 /* //////// */
