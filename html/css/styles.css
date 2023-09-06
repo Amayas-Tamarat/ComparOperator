@@ -152,7 +152,9 @@ ul {
 .starContainer{
     display: flex;
 }
-
+.yellow{
+    fill:yellow;
+}
 
 /*-----------------*/
 

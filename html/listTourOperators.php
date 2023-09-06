@@ -40,7 +40,7 @@ if(isset($_POST['name']) && $_POST['name'] !=""){
             <label for="name">Enter your name</label>
             <input type="text" name="name">
             <label for="note">rate :</label>
-            <input type="number" name="note" placeholder="Rate the tour from 1 to 5">
+            <input type="number" name="note" min="1" max="5" placeholder="Rate the tour from 1 to 5">
             <label for="comments">Comments:</label>
             <input type="text" name="comments">
             <input type="submit">
@@ -52,7 +52,6 @@ if(isset($_POST['name']) && $_POST['name'] !=""){
     </div>
     <script type="text/javascript">
         let note = <?php echo json_encode($manager->tourNote($tourOperator)); ?>;
-       
     </script>
     <script src="./js/main.js"></script>
 </body>
