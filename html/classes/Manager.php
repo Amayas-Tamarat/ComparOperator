@@ -94,7 +94,8 @@ class Manager{
     public function addScoreToOperator(TourOperator $tourOperator):void
     {
         $id = $tourOperator->getId();
-        $statement = $this->getDb()->prepare('SELECT * FROM score JOIN author ON score.author_id = author.id WHERE tour_operator_id = :id');
+        $statement = $this->getDb()->prepare('SELECT * FROM score JOIN author 
+        ON score.author_id = author.id WHERE tour_operator_id = :id');
         $statement->bindParam('id', $id, PDO::PARAM_INT);
         $statement->execute();
         $scores = $statement->fetchAll();
@@ -111,7 +112,8 @@ class Manager{
     public function addReviewtoOperator(TourOperator $tourOperator):void
     {
         $id = $tourOperator->getId();
-        $statement = $this->getDb()->prepare('SELECT * FROM review JOIN author ON review.author_id = author.id WHERE tour_operator_id = :id');
+        $statement = $this->getDb()->prepare('SELECT * FROM review JOIN author 
+        ON review.author_id = author.id WHERE tour_operator_id = :id');
         $statement->bindParam('id', $id, PDO::PARAM_INT);
         $statement->execute();
         $reviews = $statement->fetchAll();
@@ -159,7 +161,8 @@ class Manager{
     public function getOperatorByDestination(Destination $destination):int
     {
         $id= $destination->getId();
-        $statement = $this->getDb()->prepare('SELECT tour_operator_id FROM destination WHERE tour_operator_id = :id');
+        $statement = $this->getDb()->prepare('SELECT tour_operator_id FROM destination 
+        WHERE tour_operator_id = :id');
         $statement->bindParam('id', $id, PDO::PARAM_INT);
         $statement->execute();
         $idOperator = $statement->fetch();
@@ -278,7 +281,8 @@ class Manager{
 
     public function authorAlreadyPosted($idTourOperator, $idAuthor):bool
     {
-        $statement = $this->getDb()->prepare('SELECT * FROM review WHERE tour_operator_id = :tour_operator_id AND author_id = :author_id');
+        $statement = $this->getDb()->prepare('SELECT * FROM review 
+        WHERE tour_operator_id = :tour_operator_id AND author_id = :author_id');
         $statement->bindParam('tour_operator_id', $idTourOperator, PDO::PARAM_INT);
         $statement->bindParam('author_id', $idAuthor, PDO::PARAM_INT);
         $statement->execute();
