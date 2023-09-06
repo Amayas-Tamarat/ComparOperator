@@ -1,7 +1,7 @@
 <?php
 
 class Certificate {
-    private string $expiresAt ="";
+    private string $expiresAt ;
     private  string $signatory = "";
 
 
@@ -12,8 +12,8 @@ class Certificate {
 
     public function hydrate($datas)
     {
-        if (isset($datas["expires_at"])) {
-            $this->setExpiresAt($datas["expires_at"]);
+        if (isset($datas["expiresAt"])) {
+            $this->setExpiresAt($datas["expiresAt"]);
         }
         if (isset($datas["signatory"])) {
             $this->setSignatory($datas["signatory"]);

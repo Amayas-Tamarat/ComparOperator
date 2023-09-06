@@ -1,6 +1,6 @@
 <?php
 class Destination {
-    private int $id;
+    private ?int $id = null;
     private string $location;
     private int $price;
     private string $images;
@@ -29,7 +29,7 @@ class Destination {
     /**
      * Get the value of id
      */ 
-    public function getId(): int
+    public function getId():?int
     {
         return $this->id;
     }
