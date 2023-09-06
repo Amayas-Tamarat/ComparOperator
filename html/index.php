@@ -41,38 +41,21 @@ require_once('./connect/connect.php');
     <div class="">
         <?php
         $destinations = new Manager($db);
-        $listeDestinations = $destinations->getAllDestination(); 
+        $listeDestinations = $destinations->getAllDestination();
         ?>
 
-        <div class="d-flex">
-            <div class="card">
-                <img src='./upload/<?php echo $listeDestinations[0]->getImages(); ?>' class='img-fluid'>
-                <div class="overlay">
-                    <?php echo $listeDestinations[0]->getLocation() . "<br>";
-                    echo $listeDestinations[0]->getPrice(); ?>
+        <div class="container d-flex flex-wrap">
+            <?php foreach ($listeDestinations as $destination) : ?>
+                <div class="card">
+                    <a href="./listTourOperators.php?id=<?php echo $destination->getId(); ?>">
+                        <img src='./upload/<?php echo $destination->getImages(); ?>' class='img-fluid'>
+                    </a>
+                    <!-- <div class="overlay">
+                        <?php echo $destination->getLocation() . "<br>";
+                        echo $destination->getPrice(); ?>
+                    </div> -->
                 </div>
-            </div>
-            <div class="card">
-                <img src='./upload/<?php echo $listeDestinations[1]->getImages(); ?>' class='img-fluid'>
-                <div class="overlay">
-                    <?php echo $listeDestinations[1]->getLocation() . "<br>";
-                    echo $listeDestinations[1]->getPrice(); ?>
-                </div>
-            </div>
-            <div class="card">
-                <img src='./upload/<?php echo $listeDestinations[2]->getImages(); ?>' class='img-fluid'>
-                <div class="overlay">
-                    <?php echo $listeDestinations[2]->getLocation() . "<br>";
-                    echo $listeDestinations[2]->getPrice(); ?>
-                </div>
-            </div>
-            <div class="card">
-                <img src='./upload/<?php echo $listeDestinations[3]->getImages(); ?>' class='img-fluid'>
-                <div class="overlay">
-                    <?php echo $listeDestinations[3]->getLocation() . "<br>";
-                    echo $listeDestinations[3]->getPrice(); ?>
-                </div>
-            </div>
+            <?php endforeach; ?>
         </div>
 
 
