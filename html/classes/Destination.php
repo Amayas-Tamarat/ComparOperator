@@ -4,6 +4,7 @@ class Destination {
     private string $location;
     private int $price;
     private string $images;
+    private int $tour_operator_id;
 
 
     public function __construct(array $datas)
@@ -24,6 +25,9 @@ class Destination {
         }
         if (isset($datas['images'])) {
             $this->setImages($datas['images']);
+        }
+        if (isset($datas['tour_operator_id'])) {
+            $this->setTour_operator_id($datas['tour_operator_id']);
         }
     }
     /**
@@ -102,6 +106,26 @@ class Destination {
     public function setImages($images)
     {
         $this->images = $images;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of tour_operator_id
+     */ 
+    public function getTour_operator_id()
+    {
+        return $this->tour_operator_id;
+    }
+
+    /**
+     * Set the value of tour_operator_id
+     *
+     * @return  self
+     */ 
+    public function setTour_operator_id($tour_operator_id)
+    {
+        $this->tour_operator_id = $tour_operator_id;
 
         return $this;
     }

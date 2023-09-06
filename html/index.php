@@ -47,7 +47,7 @@ require_once('./connect/connect.php');
         <div class="container d-flex flex-wrap">
             <?php foreach ($listeDestinations as $destination) : ?>
                 <div class="card">
-                    <a href="./listTourOperators.php?id=<?php echo $destination->getId(); ?>">
+                    <a href="./listTourOperators.php?tour_operator_id=<?php echo $destination->getTour_operator_id(); ?>">
                         <img src='./upload/<?php echo $destination->getImages(); ?>' class='img-fluid'>
                     </a>
                     <!-- <div class="overlay">
