@@ -1,6 +1,6 @@
 <div class="header">
     <div class="logo">
-        <img src="./assets/picture/logo.jpg" alt="logo bon voyage">
+        <img src="./assets/picture/logo" alt="logo bon voyage">
     </div>
     <nav>
         <ul>

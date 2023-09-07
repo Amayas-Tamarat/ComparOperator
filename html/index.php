@@ -44,10 +44,9 @@ require_once('./connect/connect.php');
 
     <div class="container">
         <?php foreach ($listeDestinations as $destination) : ?>
-            <div class="card">
+            <div class="cards">
                 <a href="./listTourOperators.php?tour_operator_id=<?php echo $destination->getTour_operator_id(); ?>">
                     <img src='./upload/<?php echo $destination->getImages(); ?>' class='img-fluid'>
-
                     <div class="overlay">
                         <?php echo $destination->getLocation() . "<br>";
                         echo $destination->getPrice() . " € "; ?>
