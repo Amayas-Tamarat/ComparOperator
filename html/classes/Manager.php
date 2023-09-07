@@ -219,4 +219,17 @@ class Manager{
         }
     }
     
+    public function createTourOperatorDB(TourOperator $tourOperator) {
+        $req = $this->getDb()->prepare("INSERT INTO tour_operator (name, link) 
+        VALUES (:name, :link)");
+        
+        if($req->execute(array(
+            'name' => $tourOperator->getName(),
+            'link' => $tourOperator->getLink()
+        ))) {
+            echo "Tour Operator has been created.";
+        } else {
+            echo "Error creating Tour Operator.";
+        }
+    }
 }
