@@ -39,7 +39,7 @@ li {
 
 ul>li>a {
     text-decoration: none;
-    color: #1c89ab;
+    color: 	#9370DB;
     font-size: 1.5rem;
     padding: 5px;
 }
@@ -54,7 +54,7 @@ nav {
 }
 h3{
     font-size:35px;
-    color:#1c89ab;
+    color:#9370DB;
     font-family: 'baskerville-italic';
 }
 
@@ -84,7 +84,7 @@ padding:30px;
 .header {
     display: flex;
     background-color: #fef4e8;
-    border: 2px solid #1c89ab
+    border: 1px solid 	#9370DB
 }
 
 ul>li {
@@ -182,12 +182,8 @@ ul {
    justify-content: center;
     background-color:#fef4e8;
     margin:auto;
+    border: 1px solid #9370DB;
 }
 
 /*-----------------*/
 
-footer {
-    height: 300px;
-    background-color: #1c89ab;
-    color: #fef4e8;
-}

@@ -36,7 +36,7 @@ require_once('./connect/connect.php');
         $listeDestinations = $destinations->getAllDestination();
         ?>
 
-        <div class="container d-flex flex-row">
+        <div class="container d-flex flex-row ">
             <?php foreach ($listeDestinations as $destination) : ?>
                 <div class="card">
                     <a href="./listTourOperators.php?tour_operator_id=<?php echo $destination->getTour_operator_id(); ?>">
