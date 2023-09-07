@@ -170,14 +170,14 @@ class Manager{
         return $idOperator;
     }
  
-    public function createDestination(Destination $destination):void
+    public function createDestination(Destination $destination,$tourOperatorId):void
     {
         $req = $this->getDb()->prepare("INSERT INTO destination (location, price, tour_operator_id) 
         VALUES (:location, :price, :tour_operator_id)");
         if($req->execute(array(
             'location'=>$destination->getLocation(),
             'price'=>$destination->getPrice(),
-            'tour_operator_id'=>$destination->getId()
+            'tour_operator_id'=>$tourOperatorId
         )));
         
     }
@@ -209,6 +209,34 @@ class Manager{
         return $listeDestinations;
     }
 
+    public function createCertificate(Certificate $certificate, $tourOperatorId){
+        $req = $this->getDb()->prepare("INSERT INTO certificate (tour_operator_id, expires_at, signatory) 
+        VALUES (:tour_operator_id, :expire_at, :signatory)");
+        if($req->execute(array(
+            'tour_operator_id' => $tourOperatorId,
+            'expire_at' => $certificate->getexpiresAt(),
+            'signatory' => $certificate->getsignatory()
+        ))) {
+            echo "Certificate has been created.";
+        } else {
+            echo "Error creating certificate.";
+        }
+    }
+    
+    public function createTourOperatorDB(TourOperator $tourOperator) {
+        $req = $this->getDb()->prepare("INSERT INTO tour_operator (name, link) 
+        VALUES (:name, :link)");
+        
+        if($req->execute(array(
+            'name' => $tourOperator->getName(),
+            'link' => $tourOperator->getLink()
+        ))) {
+            echo "Tour Operator has been created.";
+        } else {
+            echo "Error creating Tour Operator.";
+        }
+    }
+    
     public function displayReviews(TourOperator $tourOperator)
     {
         foreach($tourOperator->getReviews() as $review)
