@@ -55,6 +55,8 @@ li>a:hover {
 
 nav {
     width: 100%;
+    background-color: transparent;
+    color: white !important;
 
 }
 h3{
@@ -90,8 +92,9 @@ h3{
 
 .header {
     display: flex;
-    background-color: #fef4e8;
-    border: 1px solid 	#9370DB
+    background-color: transparent;
+    color: beige !important;
+    
 }
 
 ul>li {

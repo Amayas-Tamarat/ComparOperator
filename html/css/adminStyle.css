@@ -1,0 +1,47 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+h1 {
+    background-color: #9073DB;
+    color: #fef4e8;
+    padding: 10px;
+}
+h2,label{
+    color:#9073DB;
+}
+
+.container {
+    margin: 20px;
+}
+
+.form-section {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="number"],
+select {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+}
+
+button[type="submit"] {
+    background-color: #9073DB;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+}
+
+.tour-operator-info {
+    border: 1px solid #9073DB;
+    padding: 10px;
+    margin-top: 20px;
+}
