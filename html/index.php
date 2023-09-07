@@ -23,7 +23,8 @@ require_once('./connect/connect.php');
         ?>
 
         <div>
-            <h2>Bon voyage</h2>
+            <h2 class="titre">Bon voyage</h2>
+            <p class="slogan">Trouvez les voyages de vos rêves au meilleur tarif !</p>
         </div>
     </div>
 

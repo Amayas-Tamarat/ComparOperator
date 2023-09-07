@@ -10,7 +10,6 @@
     font-family: 'baskerville';
 }
 body {
-
     margin: 0px;
     padding: 0px;
 }
@@ -59,10 +58,23 @@ h3{
     font-family: 'baskerville-italic';
 }
 
-h2{
+.titre{
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    margin-top: 50px;
     font-size: 50px;
-    color: white;
     width: 100%;
+    color:#fef4e8;
+}
+.slogan{
+    display: flex;
+    justify-content: center;
+    margin: auto;
+padding:30px;
+    font-size: 25px;
+    width: 100%;
+    color:#fef4e8;
 }
 
 .logo>img {
@@ -72,6 +84,7 @@ h2{
 .header {
     display: flex;
     background-color: #fef4e8;
+    border: 2px solid #1c89ab
 }
 
 ul>li {
@@ -85,7 +98,6 @@ li {
     padding: 10px 15px;
     text-decoration: none;
     color: #333;
-
     vertical-align: middle;
 
 }
@@ -170,18 +182,22 @@ ul {
     justify-content: flex-start;
     vertical-align: center;
     margin:auto;
+    margin-bottom:20px;
    
 }
 .starContainer>p{
     vertical-align: center;
+        margin-bottom:20px;
 }
 .yellow{
     fill:yellow;
 }
-.yellow{
-    fill:yellow !important;
+.operator{
+   width:80%;
+   justify-content: center;
+    background-color:#fef4e8;
+    margin:auto;
 }
-
 
 /*-----------------*/
 
