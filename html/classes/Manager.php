@@ -193,7 +193,7 @@ class Manager{
             echo "Error deleting destination with ID $idDestination.";
         }
     }
-
+//bien joué à tous
 
     public  function getAllDestination():array
     {
@@ -321,6 +321,7 @@ class Manager{
         }else
             return false;
     }
+
     public function tourNote(TourOperator $tourOperator):int
     {
         $id = $tourOperator->getId();
@@ -364,5 +365,18 @@ class Manager{
         {
             echo '<a class="redirect" href="'.$tourOperator->getLink().'">Our Website</a>';
         }
+    }
+
+    public function addPremium($idTourOperator)
+    {
+
+        $req = $this->getDb()->prepare("UPDATE  tour_operator SET  is_premium = 1 WHERE id = $idTourOperator");
+        if ($req->execute(array()));
+    }
+
+    public function removePremium($idTourOperator)
+    {
+        $req = $this->getDb()->prepare("UPDATE  tour_operator SET is_premium = 0 WHERE id = $idTourOperator");
+        if ($req->execute(array()));
     }
 }

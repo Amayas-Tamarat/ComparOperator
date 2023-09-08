@@ -8,6 +8,7 @@ function authenticate($username, $password)
     return $username === 'root' && $password === 'root';
 }
 
+$manager = new Manager($db);
 // Check if the user is already authenticated.
 if (isset($_SESSION['authenticated']) && $_SESSION['authenticated'] === true) {
     // User is already authenticated, continue with the admin panel code.
@@ -26,7 +27,9 @@ if (isset($_SESSION['authenticated']) && $_SESSION['authenticated'] === true) {
     exit;
 }
 
-$manager = new Manager($db);
+
+
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['delete_destination'])) {
         $destinationIdDelete = $_POST['destination_id'];
@@ -53,7 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         ];
         $newTourOperator = new TourOperator($TourOperatorData);
         $manager->createTourOperatorDB($newTourOperator);
-    }elseif (isset($_POST['delete_tour_operator'])) {
+    } elseif (isset($_POST['delete_tour_operator'])) {
         $idTourOperatorToDelete = $_POST['delete_tour_operator'];
         if ($manager->removeTourOperator($idTourOperatorToDelete)) {
             header('Location: confirmation.php');
@@ -61,8 +64,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         } else {
             echo "Error deleting the Tour Operator.";
         }
+    }
 }
+
+
+if (isset($_POST['addPremium']) && $_POST['addPremium'] != "") {
+    $manager->addPremium($_POST['addPremium']);
+    $_POST['addPremium'] = "";
 }
+if (isset($_POST['removePremium']) && $_POST['removePremium'] != "") {
+    $manager->removePremium($_POST['removePremium']);
+    $_POST['removePremium'] = "";
+}
+
 
 
 $tourOperators = $manager->findAllTourOperator();
@@ -161,6 +175,18 @@ $destinations = $manager->getAllDestination();
                 <input type="hidden" name="delete_tour_operator" value="<?php echo $tourOperator->getId(); ?>">
                 <button type="submit">Delete Tour Operator</button>
             </form>
+            <form action="" method="post">
+                <label for="removePremium">Retirer premium</label>
+                <input type="hidden" name="removePremium" value="<?php echo $tourOperator->getId(); ?> ">
+                <input type="submit">
+            </form>
+            <form action="" method="post">
+                <label for="addPremium">Ajouter premium</label>
+                <input type="hidden" name="addPremium" value="<?php echo $tourOperator->getId(); ?>">
+                <input type="submit">
+
+            </form>
+
             <hr>
             <h3>Destinations</h3>
             <div>
@@ -176,6 +202,3 @@ $destinations = $manager->getAllDestination();
 </body>
 
 </html>
-<?php
-session_destroy();
-?>
