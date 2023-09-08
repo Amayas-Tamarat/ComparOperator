@@ -43,7 +43,7 @@ require_once('./connect/connect.php');
     $destinations = new Manager($db);
     $listeDestinations = $destinations->getAllDestination();
     ?>
-<div class="container">
+<div class="container-fluid">
         <?php foreach ($listeDestinations as $destination) : ?>
             <div class="cards">
                 <a href="./listTourOperators.php?tour_operator_id=<?php echo $destination->getTour_operator_id(); ?>">

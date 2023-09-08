@@ -134,12 +134,13 @@ ul {
 
 /*------- Mosaic --------*/
 
-.container {
+.container-fluid {
     display: flex !important;
 }
 
 .cards {
     width: 60rem;
+    margin: 10px;
     position: relative;
     overflow: hidden;
     transition: transform 0.3s ease-in-out;
@@ -188,6 +189,23 @@ ul {
 .cards:hover img {
     transform: scale(1.05);
 }
+
+@media only screen and (max-width: 700px) {
+    .container-fluid {
+        flex-direction: column;
+    }
+    .cards {
+        max-width: 100%;
+    }
+}
+
+/* @media (min_width: 600px) {
+    .container {
+        display: flex !important;
+        flex-direction: column !important;
+    }
+} */
+
 
 /* PROMOTION */
 
