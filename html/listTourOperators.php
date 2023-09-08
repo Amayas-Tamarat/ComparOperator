@@ -28,7 +28,7 @@ if(isset($_POST['name']) && $_POST['name'] !=""){
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
 </head>
 <body>
-
+    <nav></nav>
     <div class="operator">
         <h3><?php echo $tourOperator->getName() ?></h3>
         <?php $manager->premium($tourOperator); ?>
@@ -42,6 +42,7 @@ if(isset($_POST['name']) && $_POST['name'] !=""){
         <?php echo ' ('. $manager->countNote($tourOperator).' avis)'?>  
         </div>
         <div>
+            <p>Autres destinations disponibles :</p>
             <?php foreach($tourOperator->getDestinations() as $destination){
                 echo $destination->getLocation();
             } ?>
@@ -62,6 +63,7 @@ if(isset($_POST['name']) && $_POST['name'] !=""){
             $manager->displayReviews($tourOperator);
         ?>
     </div>
+    
     <script type="text/javascript">
         let note = <?php echo json_encode($manager->tourNote($tourOperator)); ?>;
     </script>
