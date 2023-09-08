@@ -1,0 +1,46 @@
+/*------list Tour operator------*/
+.starContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    vertical-align: center;
+    margin: auto;
+    margin-bottom: 20px;
+
+}
+
+.starContainer>p {
+    vertical-align: center;
+    margin-bottom: 20px;
+}
+
+.yellow {
+    fill: yellow;
+}
+.operator{
+   width:20%;
+   justify-content: center;
+    background-color:#fef4e8;
+    margin:auto;
+    border: 1px solid #9370DB;
+}
+
+h3{
+    background-color: #9370DB;
+    color: #fef4e8;
+}
+.redirect{
+    text-decoration: none;
+}
+input[type='submit']{
+    width:100px;
+    margin:5px;
+    background-color: #e6c3f8;
+    color: #9370DB;
+}
+form>*{
+    width:100%;
+}
+body{
+    background-color: white;
+}

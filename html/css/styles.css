@@ -10,6 +10,7 @@
 
 * {
     font-family: 'baskerville';
+    scroll-behavior: smooth;
 }
 
 body {
@@ -29,6 +30,7 @@ body {
 html {
     margin: 0px;
     padding: 0px;
+    scroll-behavior: smooth;
 }
 
 body {
@@ -222,34 +224,6 @@ ul {
     background: #333;
     color: #fff;
     padding: 15px 20px;
-}
-
-
-/*------list Tour operator------*/
-.starContainer {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    vertical-align: center;
-    margin: auto;
-    margin-bottom: 20px;
-
-}
-
-.starContainer>p {
-    vertical-align: center;
-    margin-bottom: 20px;
-}
-
-.yellow {
-    fill: yellow;
-}
-.operator{
-   width:80%;
-   justify-content: center;
-    background-color:#fef4e8;
-    margin:auto;
-    border: 1px solid #9370DB;
 }
 
 

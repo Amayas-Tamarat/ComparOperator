@@ -256,8 +256,6 @@ class Manager{
         if(!$this->authorAlreadyPosted($idTourOperator,$idAuthor)){
             $this->insertMessage($idTourOperator,$comments,$idAuthor);
             $this->insertScore($idTourOperator,$rate,$idAuthor);
-        }else{
-            echo" LE gars a déja posté !!!!";
         }
         
     }
@@ -345,5 +343,13 @@ class Manager{
 
         $count = $statement->fetch();
         return $count[0];
+    }
+
+    public function premium(TourOperator $tourOperator)
+    {
+        if($tourOperator->getIsPremium())
+        {
+            echo '<a class="redirect" href="'.$tourOperator->getLink().'">Our Website</a>';
+        }
     }
 }
