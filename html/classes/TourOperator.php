@@ -8,6 +8,7 @@ class TourOperator{
     private Certificate $certificate;
     private array $reviews;
     private array $scores;
+    private bool $isPremium;
 
 
     public function __construct(array $datas)
@@ -26,6 +27,10 @@ class TourOperator{
         if (isset($datas["link"])) {
             $this->setLink($datas["link"]);
         }
+        if (isset($datas["is_premium"])) {
+            $this->setIsPremium($datas["is_premium"]);
+        }
+
         
     }
     /**
@@ -164,6 +169,26 @@ class TourOperator{
     public function setScores(array $scores): self
     {
         $this->scores = $scores;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of isPremium
+     */ 
+    public function getIsPremium()
+    {
+        return $this->isPremium;
+    }
+
+    /**
+     * Set the value of isPremium
+     *
+     * @return  self
+     */ 
+    public function setIsPremium($isPremium)
+    {
+        $this->isPremium = $isPremium;
 
         return $this;
     }
