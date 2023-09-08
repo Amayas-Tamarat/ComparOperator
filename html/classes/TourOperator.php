@@ -5,7 +5,7 @@ class TourOperator{
     private string $name;
     private string $link;
     private array $destinations;
-    private Certificate $certificate;
+    private ?Certificate $certificate = null;
     private array $reviews;
     private array $scores;
     private bool $isPremium;
@@ -116,7 +116,7 @@ class TourOperator{
     /**
      * Get the value of certificate
      */ 
-    public function getCertificate(): Certificate
+    public function getCertificate(): Certificate|null
     {
         return $this->certificate;
     }
