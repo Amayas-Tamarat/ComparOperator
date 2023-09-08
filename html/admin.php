@@ -3,6 +3,29 @@ require_once('./connect/autoload.php');
 require_once('./connect/connect.php');
 
 
+function authenticate($username, $password)
+{
+    return $username === 'root' && $password === 'root';
+}
+
+// Check if the user is already authenticated.
+if (isset($_SESSION['authenticated']) && $_SESSION['authenticated'] === true) {
+    // User is already authenticated, continue with the admin panel code.
+} elseif ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['username']) && isset($_POST['password'])) {
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+
+    if (authenticate($username, $password)) {
+        $_SESSION['authenticated'] = true;
+    } else {
+        echo "Mauvais mdp ou usernames.";
+        exit;
+    }
+} else {
+    include('./login.php');
+    exit;
+}
+
 $manager = new Manager($db);
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['delete_destination'])) {
@@ -29,16 +52,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             'link' => $_POST['new_link'],
         ];
         $newTourOperator = new TourOperator($TourOperatorData);
-        $manager->createTourOperatorDB($newTourOperator);        
-    }
+        $manager->createTourOperatorDB($newTourOperator);
+    }elseif (isset($_POST['delete_tour_operator'])) {
+        $idTourOperatorToDelete = $_POST['delete_tour_operator'];
+        if ($manager->removeTourOperator($idTourOperatorToDelete)) {
+            header('Location: confirmation.php');
+            exit;
+        } else {
+            echo "Error deleting the Tour Operator.";
+        }
+}
 }
 
 
 $tourOperators = $manager->findAllTourOperator();
-// foreach ($tourOperators as $tourOperator) {
-//     $tourOperator= $manager->createTourOperator($tourOperator);
-//     var_dump($tourOperator);
-// }
 $destinations = $manager->getAllDestination();
 
 ?>
@@ -52,8 +79,20 @@ $destinations = $manager->getAllDestination();
 </head>
 
 <body>
-    <h1>Delete Destination</h1>
+    <h1>Admin Page</h1>
     <div class="container">
+        <div class="form-section">
+            <h2>Create Tour Operator</h2>
+            <form method="POST" action="">
+                <label for="new_name">Name:</label>
+                <input type="text" name="new_name" id="new_name" required><br>
+
+                <label for="new_link">Link:</label>
+                <input type="text" name="new_link" id="new_link" required><br>
+
+                <button type="submit" name="create_tour_operator">Create Tour Operator</button>
+            </form>
+        </div>
         <div class="form-section">
             <h2>Delete Destination</h2>
             <form method="POST" action="">
@@ -108,19 +147,6 @@ $destinations = $manager->getAllDestination();
                 <button type="submit" name="add_certification">Create Certificate</button>
             </form>
         </div>
-
-        <div class="form-section">
-            <h2>Create Tour Operator</h2>
-            <form method="POST" action="">
-                <label for="new_name">Name:</label>
-                <input type="text" name="new_name" id="new_name" required><br>
-
-                <label for="new_link">Link:</label>
-                <input type="text" name="new_link" id="new_link" required><br>
-
-                <button type="submit" name="create_tour_operator">Create Tour Operator</button>
-            </form>
-        </div>
     </div>
 
     <?php foreach ($tourOperators as $tourOperator) : ?>
@@ -131,30 +157,25 @@ $destinations = $manager->getAllDestination();
             <strong>Link:</strong> <a href="<?php echo $tourOperator->getLink(); ?>"><?php echo $tourOperator->getLink(); ?></a><br>
             <strong>Certificates:</strong> <?php echo ($tourOperator->getCertificate() !== null ? 'Yes' : 'No'); ?><br>
             <strong>Destinations:</strong> <?php echo count($tourOperator->getDestinations()); ?><br>
+            <form method="POST" action="">
+                <input type="hidden" name="delete_tour_operator" value="<?php echo $tourOperator->getId(); ?>">
+                <button type="submit">Delete Tour Operator</button>
+            </form>
+            <hr>
+            <h3>Destinations</h3>
+            <div>
+                <?php foreach ($tourOperator->getDestinations() as $destination) : ?>
+                    <div>
+                        <strong>Location:</strong> <?php echo $destination->getLocation(); ?><br>
+                        <strong>Price:</strong> <?php echo $destination->getPrice(); ?><br>
+                    </div>
+                <?php endforeach; ?>
+            </div>
         </div>
     <?php endforeach; ?>
 </body>
 
 </html>
-
 <?php
-// foreach ($destinations as $destination) {
-//     echo '<div>';
-//     echo 'location = ' . $destination->getLocation() . '<br>';
-//     echo 'price = ' . $destination->getPrice() . '<br>';
-//     echo 'id = ' . $destination->getid();
-//     echo '</div>';
-// }
-// foreach ($tourOperators as $tourOperator) {
-//     $tourOperator = $manager->createTourOperator($tourOperator);
-//     echo '<div>';
-//     echo '<h2>Tour Operator Information</h2>';
-//     echo '<strong>Name:</strong> ' . $tourOperator->getName() . '<br>';
-//     echo '<strong>Link:</strong> <a href="' . $tourOperator->getLink() . '">' . $tourOperator->getLink() . '</a><br>';
-//     echo '<strong>Destinations:</strong> ' . count($tourOperator->getDestinations()) . '<br>';
-//     echo '</div>';
-    
-// }
-
-
+session_destroy();
 ?>

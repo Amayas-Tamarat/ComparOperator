@@ -236,7 +236,7 @@ class Manager{
             echo "Error creating Tour Operator.";
         }
     }
-    
+
     public function displayReviews(TourOperator $tourOperator)
     {
         foreach($tourOperator->getReviews() as $review)
@@ -345,5 +345,18 @@ class Manager{
 
         $count = $statement->fetch();
         return $count[0];
+    }
+
+    public function removeTourOperator($idTourOperator):void
+    {
+        $sql = "DELETE FROM tour_operator WHERE id = :id";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindParam(':id', $idTourOperator, PDO::PARAM_INT);
+    
+        if ($stmt->execute()) {
+            echo "Tour Operator with ID $idTourOperator has been deleted.";
+        } else {
+            echo "Error deleting the Operator with ID $idTourOperator.";
+        }
     }
 }
