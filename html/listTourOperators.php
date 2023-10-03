@@ -44,7 +44,7 @@ if(isset($_POST['name']) && $_POST['name'] !=""){
         <div>
             <p>Autres destinations disponibles :</p>
             <?php foreach($tourOperator->getDestinations() as $destination){
-                echo $destination->getLocation();
+                echo $destination->getLocation(). ' ';
             } ?>
         </div>
 
