@@ -2,17 +2,25 @@ footer{
     width: 100%;
     display: flex;
     flex-direction: row;
-    justify-content: center;
-    margin:auto;
-    height:50px;
+    justify-content: space-around;
+    
+
     background-color: #9370DB;
+    padding-top: 25px;
+    padding-bottom:25px;
     
 }
 
 footer>*{
     padding-left: 10px;
+    vertical-align: center;
+    margin:auto;
+    
 }
-
+footer>p{
+    color:white;
+    vertical-align: center;
+}
 svg{
     fill:#fef4e8;
 }
